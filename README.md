@@ -300,6 +300,7 @@ source ~/ros_ws/devel/setup.bash
 rosrun baxter_tools enable_robot.py -e
 python ~/ros_ws/path_planner.py
 ```
+> **Note:** If a target XYZ position is unreachable (too far away, or would pass through the robot's own body), the script prints "No valid IK solution" and stops safely rather than guessing. Adjust the `target_x/y/z` values in the plan if this happens.
 
 **Run on the physical robot**
 
@@ -312,8 +313,6 @@ rosrun baxter_tools enable_robot.py -e
 python ~/ros_ws/path_planner.py
 ```
 > ⚠️ **Physical robot:** Make sure the space around Baxter's left arm is physically clear before running — unlike simulation, a bad joint angle can cause a real collision.
-> **Note:** If a target XYZ position is unreachable (too far away, or would pass through the robot's own body), the script prints "No valid IK solution" and stops safely rather than guessing. Adjust the `target_x/y/z` values in the plan if this happens.
-
 ---
 
 ## Resetting the Robot's Position
