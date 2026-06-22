@@ -285,72 +285,7 @@ nano ~/ros_ws/<script_name>.py
 Paste in the script contents (right-click to paste in most terminals), then save and exit with `Ctrl+O`, `Enter`, `Ctrl+X`.
 
 ---
-
-### Script 1: `lift_left_arm.py`
-
-Moves the left arm to a raised position and closes the left gripper. The simplest script — good starting point.
-
-**Run in simulation**
-
-Terminals 1 and 2 must already be running (simulator + rosbridge). Then in a new terminal:
-
-```bash
-docker exec -it baxter2 bash
-source /opt/ros/kinetic/setup.bash
-source ~/ros_ws/devel/setup.bash
-rosrun baxter_tools enable_robot.py -e
-python ~/ros_ws/lift_left_arm.py
-```
-
-**Run on the physical robot**
-
-Skip Terminals 1 and 2 entirely (those are simulation-only). On a terminal connected to Baxter's network, with the robot powered on:
-
-```bash
-docker exec -it baxter2 bash
-source /opt/ros/kinetic/setup.bash
-source ~/ros_ws/devel/setup.bash
-./baxter.sh <baxter_ip_address>
-rosrun baxter_tools enable_robot.py -e
-python ~/ros_ws/lift_left_arm.py
-```
-
-> ⚠️ **Physical robot:** Make sure the space around Baxter's left arm is physically clear before running — unlike simulation, a bad joint angle can cause a real collision.
-
----
-
-### Script 2: `both_arms_sequence.py`
-
-Moves both arms through a sequence: T pose (arms straight out to the sides) → grabbing position (arms forward, elbows bent, grippers closing) → back to a safe tucked position.
-
-**Run in simulation**
-
-Terminals 1 and 2 must already be running. Then:
-
-```bash
-docker exec -it baxter2 bash
-source /opt/ros/kinetic/setup.bash
-source ~/ros_ws/devel/setup.bash
-rosrun baxter_tools enable_robot.py -e
-python ~/ros_ws/both_arms_sequence.py
-```
-
-**Run on the physical robot**
-
-```bash
-docker exec -it baxter2 bash
-source /opt/ros/kinetic/setup.bash
-source ~/ros_ws/devel/setup.bash
-./baxter.sh <baxter_ip_address>
-rosrun baxter_tools enable_robot.py -e
-python ~/ros_ws/both_arms_sequence.py
-```
-
-> ⚠️ **Physical robot:** This script moves both arms through a wide range of motion. Make sure there is clear space on **both sides** of Baxter (for the T pose) and clear space **in front** (for the grab pose) before running.
-
----
-
-### Script 3: `path_planner.py` (formerly `move_to_xyz.py`)
+### Script 1: `path_planner.py`
 
 Moves a chosen arm (left or right) to XYZ coordinates in meters, relative to the robot's base, using Baxter's built-in inverse kinematics (IK) solver. Supports a planned sequence of moves and gripper actions defined as a list in `main()`.
 
@@ -376,7 +311,7 @@ source ~/ros_ws/devel/setup.bash
 rosrun baxter_tools enable_robot.py -e
 python ~/ros_ws/path_planner.py
 ```
-
+> ⚠️ **Physical robot:** Make sure the space around Baxter's left arm is physically clear before running — unlike simulation, a bad joint angle can cause a real collision.
 > **Note:** If a target XYZ position is unreachable (too far away, or would pass through the robot's own body), the script prints "No valid IK solution" and stops safely rather than guessing. Adjust the `target_x/y/z` values in the plan if this happens.
 
 ---
