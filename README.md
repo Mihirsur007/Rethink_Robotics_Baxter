@@ -127,7 +127,6 @@ sudo apt-get install -y --allow-unauthenticated ros-kinetic-rosbridge-server
 
 ## Physical Robot Setup
 
-> **Fill this section in.** Document whatever one-time steps are needed to get a machine connected to the real Baxter — network configuration, ROS environment, any hardware-specific quirks, etc.
 
 ### Physical Safety Checklist
 
