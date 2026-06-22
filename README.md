@@ -312,7 +312,7 @@ source ~/ros_ws/devel/setup.bash
 rosrun baxter_tools enable_robot.py -e
 python ~/ros_ws/path_planner.py
 ```
-> ⚠️ **Physical robot:** Make sure the space around Baxter's left arm is physically clear before running — unlike simulation, a bad joint angle can cause a real collision.
+> ⚠️ **Physical robot:** Make sure the space around Baxter is physically clear before running — unlike simulation, a bad joint angle can cause a real collision.
 ---
 
 ## Resetting the Robot's Position
